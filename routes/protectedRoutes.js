@@ -1,9 +1,9 @@
 const express = require('express');
-const authMiddleware = require('../middlewares/authMiddleware');
+const { verifyToken } = require('../middlewares/authMiddleware');  // Destructure here
 
 const router = express.Router();
 
-router.get('/protected', authMiddleware, (req, res) => {
+router.get('/protected', verifyToken, (req, res) => {
   res.json({
     message: 'Dashboard access granted',
     user: req.user,
